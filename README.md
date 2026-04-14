@@ -2,7 +2,29 @@
 
 Fine-tune [`stabilityai/stable-code-3b`](https://huggingface.co/stabilityai/stable-code-3b) for automatic code summarization using QLoRA. Supports training on Python (CodeSearchNet) and Java (FunCom) datasets, with full evaluation and mechanistic interpretability analysis.
 
-> Designed and tested on **Kaggle** (2*T4 GPU, ~16GB VRAM) and one A5000 pro (Complete pipeline takes approx. ~3-4 hrs). Should also run on Google Colab (A100/V100).
+> Designed and tested on **Kaggle** (single GPU, ~16GB VRAM). Should also run on Google Colab (A100/V100).
+
+---
+
+## Pretrained Weights
+
+| Dataset | Link |
+|---------|------|
+| FunCom (Java) | [Download from Google Drive](https://drive.google.com/file/d/1BlZcjAdocLn4wk-3Jt90WjR24DAR0eXT/view?usp=sharing) |
+| CodeSearchNet (Python) | [Download from Google Drive](https://drive.google.com/file/d/1RB-tAVqzdn94YEBJLOkITrQ00KS2dLal/view?usp=sharing) |
+
+Download and place the weights in `./results_funcom/final_model/` before running evaluation cells.
+
+To download directly in the notebook:
+```python
+# pip install gdown
+import gdown
+gdown.download(
+    "https://drive.google.com/uc?id=1BlZcjAdocLn4wk-3Jt90WjR24DAR0eXT",
+    "./results_funcom/final_model/adapter_model.safetensors",
+    quiet=False
+)
+```
 
 ---
 
