@@ -1,0 +1,64 @@
+
+╔══════════════════════════════════════════════════════════════════╗
+║        FINAL SUMMARY REPORT                                     ║
+║  Fine-tuning stable-code-3b for Code Summarization              ║
+╚══════════════════════════════════════════════════════════════════╝
+
+═══════════════════════════════════════════════════════════
+1. MODEL OVERVIEW
+═══════════════════════════════════════════════════════════
+Model: stabilityai/stable-code-3b
+Architecture: Decoder-only Transformer (GPT-NeoX based)
+Parameters: 3B total, ~0.5% trainable via QLoRA
+Quantization: 4-bit NF4 with double quantization
+LoRA Config: rank=16, alpha=32, dropout=0.05
+
+═══════════════════════════════════════════════════════════
+2. DATASETS
+═══════════════════════════════════════════════════════════
+Dataset 1: CodeSearchNet (Python) - Code-to-Text
+  Train: 5000 | Val: 500 | Test: 500
+
+Dataset 2: FunCom (Java) - Method Summarization
+  Train: 5000 | Val: 500 | Test: 500
+
+═══════════════════════════════════════════════════════════
+3. EVALUATION RESULTS
+═══════════════════════════════════════════════════════════
+Metric            CodeSearchNet          FunCom
+-----------------------------------------------
+BLEU                      3.56           10.65
+ROUGE-1                  68.60            8.23
+ROUGE-2                  66.37            2.05
+ROUGE-L                  68.38            7.27
+METEOR                   60.13           14.42
+
+
+═══════════════════════════════════════════════════════════
+4. GENERATED FIGURES (saved to disk)
+═══════════════════════════════════════════════════════════
+- csn_data_distribution.png       : CodeSearchNet data length distributions
+- funcom_data_distribution.png    : FunCom data length distributions
+- csn_training_curves.png         : CodeSearchNet training/validation loss
+- funcom_training_curves.png      : FunCom training/validation loss
+- combined_training_curves.png    : Side-by-side training curve comparison
+- evaluation_comparison.png       : Evaluation metrics bar chart
+- hyperparameter_experiments.png  : Hyperparameter sweep results
+- params_vs_loss.png              : Trainable params vs validation loss
+- attention_patterns.png          : Attention heatmaps (layers × heads)
+- attention_entropy_by_layer.png  : Attention entropy across layers
+- hidden_state_analysis.png       : PCA of hidden states + L2 norms
+- layer_cosine_similarity.png     : Adjacent layer similarity
+- head_specialization.png         : Attention head category preferences
+- token_attribution.png           : Gradient-based token importance
+- lora_weight_analysis.png        : LoRA adapter weight magnitudes
+- error_analysis.png              : Error analysis plots
+
+═══════════════════════════════════════════════════════════
+5. KEY FINDINGS & CONCLUSIONS
+═══════════════════════════════════════════════════════════
+[To be filled after running the notebook]
+- Model performance comparison across datasets
+- Optimal hyperparameters identified
+- Key mechanistic interpretability insights
+- Main error patterns and suggested improvements
