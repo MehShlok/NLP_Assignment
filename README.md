@@ -57,33 +57,7 @@ pip uninstall -y triton triton-nightly 2>/dev/null || true
 
 ## Quickstart
 
-Open `NLP_Project.ipynb` and run cells in order. Each cell has an estimated runtime:
-
-| Cell | Description | Est. Time |
-|------|-------------|-----------|
-| 1 | Install dependencies | 3–5 min |
-| 2 | Imports & setup | 30 sec |
-| 3 | Load CodeSearchNet | 3–5 min |
-| 4 | Load FunCom | 2–3 min |
-| 5 | Tokenizer & preprocessing | 5–8 min |
-| 6 | Load model with QLoRA | 3–5 min |
-| 7 | Fine-tune on CodeSearchNet | 30–45 min |
-| 8 | Plot CSN training curves | 10 sec |
-| 9 | Fine-tune on FunCom | 35–50 min |
-| 10 | Plot FunCom training curves | 10 sec |
-| 11 | Evaluation utilities | 30 sec |
-| 12 | Evaluate on CodeSearchNet | 10–15 min |
-| 13 | Evaluate on FunCom | 10–15 min |
-| 14 | Results table & comparison chart | 10 sec |
-| 15 | Hyperparameter experiments | 60–90 min |
-| 16 | Plot hyperparameter results | 10 sec |
-| 17 | Attention pattern visualization | 5–8 min |
-| 18 | Hidden state / PCA analysis | 3–5 min |
-| 19 | Attention head specialization | 3–5 min |
-| 20 | Gradient-based token attribution | 3–5 min |
-| 21 | LoRA weight analysis | 2–3 min |
-| 22 | Error analysis | 5 min |
-| 23 | Generate summary report | 10 sec |
+Open `NLP_Project.ipynb` and run cells in order.
 
 **Total runtime:** ~4–6 hours end-to-end on a single GPU.
 
