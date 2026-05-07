@@ -57,7 +57,7 @@ pip uninstall -y triton triton-nightly 2>/dev/null || true
 
 ## Quickstart
 
-Open `NLP_Project.ipynb` and run cells in order.
+Open `NLP_Project_v2.ipynb` and run cells in order.
 
 **Total runtime:** ~4–6 hours end-to-end on a single GPU.
 
