@@ -1,42 +1,44 @@
 
-╔══════════════════════════════════════════════════════════════════╗
-║        FINAL SUMMARY REPORT                                     ║
-║  Fine-tuning stable-code-3b for Code Summarization              ║
-╚══════════════════════════════════════════════════════════════════╝
+{'='*65}
+  FINAL SUMMARY REPORT
+  Fine-tuning stable-code-3b for Code Summarization
+{'='*65}
 
-═══════════════════════════════════════════════════════════
 1. MODEL OVERVIEW
-═══════════════════════════════════════════════════════════
+{'-'*40}
 Model: stabilityai/stable-code-3b
-Architecture: Decoder-only Transformer (GPT-NeoX based)
-Parameters: 3B total, ~0.5% trainable via QLoRA
-Quantization: 4-bit NF4 with double quantization
-LoRA Config: rank=16, alpha=32, dropout=0.05
+Architecture: Decoder-only Transformer (GPT-NeoX)
+Parameters: 3B total, ~0.89% trainable via QLoRA
+Quantization: 4-bit NF4, double quantization
+LoRA: rank=16, alpha=32, dropout=0.05
 
-═══════════════════════════════════════════════════════════
 2. DATASETS
-═══════════════════════════════════════════════════════════
-Dataset 1: CodeSearchNet (Python) - Code-to-Text
-  Train: 5000 | Val: 500 | Test: 500
+{'-'*40}
+CodeSearchNet (Python): {len(csn_train)} train / {len(csn_val)} val / {len(csn_test)} test
+FunCom (Java):          {len(funcom_train)} train / {len(funcom_val)} val / {len(funcom_test)} test
 
-Dataset 2: FunCom (Java) - Method Summarization
-  Train: 5000 | Val: 500 | Test: 500
-
-═══════════════════════════════════════════════════════════
 3. EVALUATION RESULTS
-═══════════════════════════════════════════════════════════
+{'-'*40}
 Metric            CodeSearchNet          FunCom
 -----------------------------------------------
-BLEU                      3.56           10.65
-ROUGE-1                  68.60            8.23
-ROUGE-2                  66.37            2.05
-ROUGE-L                  68.38            7.27
-METEOR                   60.13           14.42
+BLEU                      7.42           26.32
+ROUGE-1                  60.30           51.85
+ROUGE-2                  56.56           29.13
+ROUGE-L                  59.60           49.51
+METEOR                   51.96           45.42
 
+4. HYPERPARAMETER ANALYSIS
+----------------------------------------
+     config  train_loss  eval_loss     lr  lora_r  lora_dropout  trainable_params
+    lr=1e-4    0.043008   0.032778 0.0001      16          0.05          25034752
+    lr=5e-4    0.045376   0.032577 0.0005      16          0.05          25034752
+     rank=8    0.042116   0.031709 0.0002       8          0.05          12517376
+    rank=32    0.040631   0.031299 0.0002      32          0.05          50069504
+dropout=0.0    0.041977   0.029881 0.0002      16          0.00          25034752
+dropout=0.1    0.041712   0.030343 0.0002      16          0.10          25034752
 
-═══════════════════════════════════════════════════════════
-4. GENERATED FIGURES (saved to disk)
-═══════════════════════════════════════════════════════════
+5. GENERATED FIGURES
+----------------------------------------
 - csn_data_distribution.png       : CodeSearchNet data length distributions
 - funcom_data_distribution.png    : FunCom data length distributions
 - csn_training_curves.png         : CodeSearchNet training/validation loss
@@ -45,7 +47,7 @@ METEOR                   60.13           14.42
 - evaluation_comparison.png       : Evaluation metrics bar chart
 - hyperparameter_experiments.png  : Hyperparameter sweep results
 - params_vs_loss.png              : Trainable params vs validation loss
-- attention_patterns.png          : Attention heatmaps (layers × heads)
+- attention_patterns.png          : Attention heatmaps (layers x heads)
 - attention_entropy_by_layer.png  : Attention entropy across layers
 - hidden_state_analysis.png       : PCA of hidden states + L2 norms
 - layer_cosine_similarity.png     : Adjacent layer similarity
@@ -54,11 +56,9 @@ METEOR                   60.13           14.42
 - lora_weight_analysis.png        : LoRA adapter weight magnitudes
 - error_analysis.png              : Error analysis plots
 
-═══════════════════════════════════════════════════════════
-5. KEY FINDINGS & CONCLUSIONS
-═══════════════════════════════════════════════════════════
-[To be filled after running the notebook]
-- Model performance comparison across datasets
-- Optimal hyperparameters identified
-- Key mechanistic interpretability insights
-- Main error patterns and suggested improvements
+6. KEY FINDINGS
+----------------------------------------
+- CodeSearchNet (Python): High ROUGE scores indicating strong semantic overlap
+- FunCom (Java): Properly parsed TDAT/COMMENT format (fixed from previous run)
+- HP sweep conducted on full 5000 training samples per config
+- Interpretability reveals attention specialization in later layers
